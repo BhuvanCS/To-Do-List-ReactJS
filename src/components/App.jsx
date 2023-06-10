@@ -1,4 +1,5 @@
 import React from "react";
+import Task from "./Task";
 
 function App() {
   const [tasks, setTasks] = React.useState([]);
@@ -9,6 +10,15 @@ function App() {
   function addTask() {
     setTasks([...tasks, task]);
     setTask("");
+  }
+  function delTask(id) {
+    console.log(id);
+    setTasks((prev) => {
+      return prev.filter((element, index) => {
+        return index !== id;
+      });
+    });
+    console.log(tasks);
   }
   return (
     <div className="container">
@@ -24,7 +34,9 @@ function App() {
       <div>
         <ul>
           {tasks.map((task, index) => {
-            return <li key={index}> {task} </li>;
+            return (
+              <Task key={index} index={index} task={task} onClick={delTask} />
+            );
           })}
         </ul>
       </div>
