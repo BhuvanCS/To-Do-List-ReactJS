@@ -1,15 +1,12 @@
 import React from "react";
 import Task from "./Task";
+import InputArea from "./InputArea";
 
 function App() {
   const [tasks, setTasks] = React.useState([]);
-  const [task, setTask] = React.useState();
-  function updateText(event) {
-    setTask(event.target.value);
-  }
-  function addTask() {
+
+  function addTask(task) {
     setTasks([...tasks, task]);
-    setTask("");
   }
   function delTask(id) {
     console.log(id);
@@ -25,12 +22,7 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input onChange={updateText} type="text" value={task} />
-        <button onClick={addTask}>
-          <span>Add</span>
-        </button>
-      </div>
+      <InputArea onClick={addTask} />
       <div>
         <ul>
           {tasks.map((task, index) => {
