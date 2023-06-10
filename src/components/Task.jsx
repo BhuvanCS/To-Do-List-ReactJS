@@ -1,15 +1,12 @@
 import React from "react";
 
 function Task(props) {
-  const [done, setDone] = React.useState(false);
-  function handleClick() {
-    done === true ? setDone(false) : setDone(true);
-  }
   return (
     <li
-      style={{ textDecoration: done && "line-through" }}
-      onClick={handleClick}
-      key={props.key}
+      onClick={() => {
+        props.onClick(props.index);
+      }}
+      key={props.index}
     >
       {props.task}
     </li>
